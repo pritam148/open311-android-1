@@ -14,6 +14,7 @@ import android.support.v4.app.FragmentTransaction;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
+import com.actionbarsherlock.view.Menu;
 
 public class SettingsActivity extends BaseFragmentActivity {
 	@Override
@@ -21,8 +22,10 @@ public class SettingsActivity extends BaseFragmentActivity {
 		super.onCreate(savedInstanceState);
 		
 		ActionBar actionBar = getSupportActionBar();
+		
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 		actionBar.setTitle(R.string.menu_settings);
+		
 		
 		Tab tab;
 		tab = actionBar.newTab()
@@ -35,6 +38,14 @@ public class SettingsActivity extends BaseFragmentActivity {
 				.setTabListener(new TabListener<PersonalInfoFragment>(this, "personalInfo", PersonalInfoFragment.class));
 		actionBar.addTab(tab);
 	}
+	
+	@Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+    	getSupportMenuInflater().inflate(R.menu.main, menu);
+    	
+    	menu.findItem(R.id.menu_settings).setEnabled(false);
+        return true;
+    }
 	
 	/**
 	 * Copy of implementation from Android developer docs
