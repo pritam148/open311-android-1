@@ -20,6 +20,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+
 public class MainActivity extends BaseActivity {
     private static String SPLASH_IMAGE = "splash_image";
 
@@ -28,6 +29,15 @@ public class MainActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+	}
+	
+	@Override
+	public void onBackPressed() {
+		Log.i("Exiting");
+		Intent intent1= new Intent(Intent.ACTION_MAIN);
+		intent1.addCategory(Intent.CATEGORY_HOME);
+		intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		startActivity(intent1);
 	}
 	
 	@Override
